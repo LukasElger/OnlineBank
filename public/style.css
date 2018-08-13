@@ -1,0 +1,62 @@
+.sidenav {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.main {
+    margin-left: 200px;
+    padding: 0px 10px;
+}
+
+.main h1 {
+  text-decoration: underline;
+}
+
+.cancel_btn {
+  color: black;
+  text-decoration: none;
+}
+
+.btn {
+  color: black;
+  text-decoration: none;
+}
+
+.err_msg {
+  margin-left: 210px;
+  color: red;
+}
+
+.msg {
+  margin-left: 210px;
+  color: green;
+}
+
+.table {
+  text-align: center;
+  margin-left: : 200px;
+  padding-bottom: 5px;
+}
+
+.table th, td {
+  border: 1px solid black;
+}

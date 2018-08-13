@@ -1,0 +1,18 @@
+<div class="main">
+  <h1>Bitte füllen Sie die folgenden Felder aus:</h1>
+  <div>
+    <form action="/konten/<%= @konto_nr%>/new_pin", method="post">
+      Geben Sie hier ihre alte Pin ein:<br>
+      <input type="password" name="pin_alt" placeholder="alte Pin">
+      <br><br>
+      <button><a href="/" class="cancel_btn">Abbrechen</a></button>
+      <input type="submit" value="Bestätigen">
+    </form>
+  </div>
+</div>
+
+<div class="err_msg">
+  <% if @err_msg %>
+    <p><%= "Fehler: #{@err_msg}" %></p>
+  <% end %>
+</div>

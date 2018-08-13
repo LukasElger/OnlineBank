@@ -1,0 +1,28 @@
+<div class="main">
+  <h1>Dies sind alle Konten die momentan existieren:</h1>
+  <table class="table">
+    <tr>
+      <th>Konto-Nr</th>
+      <th>Kontostand</th>
+      <th>Pin ändern</th>
+      <th>Löschen</th>
+    </tr>
+    <% @konten.each do |iban, konto| %>
+      <tr>
+        <td>
+          <%= konto.konto_nr %>
+        </td>
+        <td>
+          <%= konto.kontostand %>
+        </td>
+        <td>
+          <button><a href="/konten/<%= konto.konto_nr%>/edit" class="btn">Pin ändern</a></button>
+        </td>
+        <td>
+          <button><a href="/konten/<%= konto.konto_nr%>/delete" class="btn">Löschen</a></button>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+  <button><a href="/" class="cancel_btn">Zurück</a></button>
+</div>

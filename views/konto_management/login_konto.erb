@@ -1,0 +1,21 @@
+<div class="main">
+  <h1>Bitte füllen Sie die folgenden Felder aus:</h1>
+  <div>
+    <form action="/login", method="post">
+      Geben Sie hier Ihre Kontonummer ein:<br>
+      <input type="text" name="login_konto_nr" placeholder="Ihre Kontonummer">
+      <br>
+      Geben Sie hier Ihre Pin ein:<br>
+      <input type="password" name="login_pin" placeholder="Ihre Pin">
+      <br><br>
+      <button><a href="/" class="cancel_btn">Abbrechen</a></button>
+      <input type="submit" value="Bestätigen">
+    </form>
+  </div>
+</div>
+
+<div class="err_msg">
+  <% if @err_msg %>
+    <p><%= "Fehler: #{@err_msg}" %></p>
+  <% end %>
+</div>

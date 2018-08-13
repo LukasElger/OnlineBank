@@ -1,0 +1,21 @@
+<div class="main">
+  <h1>Bitte füllen Sie die folgenden Felder aus:</h1>
+  <div>
+    <form action="/konten/<%= @konto_nr%>/ueberweisen", method="post">
+      Geben Sie hier die Kontonummer des Empfänger's ein:<br>
+      <input type="text" name="ziel" placeholder="Empfänger">
+      <br>
+      Geben Sie hier einen Betrag ein:<br>
+      <input type="text" name="betrag" placeholder="Betrag">
+      <br><br>
+      <button><a href="/logged_in_index/<%= @konto_nr%>" class="cancel_btn">Abbrechen</a></button>
+      <input type="submit" value="Bestätigen">
+    </form>
+  </div>
+</div>
+
+<div class="err_msg">
+  <% if @err_msg %>
+    <p><%= "Fehler: #{@err_msg}" %></p>
+  <% end %>
+</div>

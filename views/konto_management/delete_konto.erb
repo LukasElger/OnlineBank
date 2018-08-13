@@ -1,0 +1,18 @@
+<div class="main">
+  <h1>Bitte füllen Sie die folgenden Felder aus:</h1>
+  <div>
+    <form action="/konten/<%= @konto_nr%>/deleted", method="post">
+      Geben Sie hier die Pin des zu löschenden Konto's ein:<br>
+      <input type="password" name="lösche_pin" placeholder="Pin">
+      <br><br>
+      <button><a href="/" class="cancel_btn">Abbrechen</a></button>
+      <input type="submit" value="Bestätigen">
+    </form>
+  </div>
+</div>
+
+<div class="err_msg">
+  <% if @err_msg %>
+    <p><%= "Fehler: #{@err_msg}" %></p>
+  <% end %>
+</div>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>OnlineBank</title>
+    <link rel="stylesheet" href="/style.css" type="text/css">
+  </head>
+  <body>
+    <% if @logged_in %>
+      <%= erb :"sidebar/logged_in" %>
+    <% else %>
+      <%= erb :"sidebar/guest" %>
+    <% end %>
+
+    <%=yield%>
+  </body>
+</html>
