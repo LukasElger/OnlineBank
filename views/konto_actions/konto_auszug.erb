@@ -10,10 +10,10 @@
     <% @konto.ueberweisungen.each do |ueberweisung| %>
       <tr>
         <td>
-          <%= ueberweisung.konto %>
+          <%= ueberweisung.konto.konto_nr %>
         </td>
         <td>
-          <%= ueberweisung.ziel_konto_nr %>
+          <%= ueberweisung.ziel %>
         </td>
         <td>
           <%= ueberweisung.betrag %>
@@ -25,5 +25,5 @@
     <% end %>
   </table>
   <p>Ihr Kontostand beträgt: <%=@kontostand%>€</p>
-  <button><a href="/logged_in_index/<%= @konto.konto_nr%>" class="cancel_btn">Zurück</a></button>
+  <button><a href="/logged_in_index/<%= @konto.id%>" class="cancel_btn">Zurück</a></button>
 </div>

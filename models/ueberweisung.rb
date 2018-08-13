@@ -1,28 +1,9 @@
 class Ueberweisung
-  def initialize(quelle, ziel, betrag, verwendungszweck)
-    @konto = quelle
-    @ziel_konto_nr = ziel
-    @betrag = betrag
-    @verwendungszweck = verwendungszweck
-  end
+  include DataMapper::Resource
+  property :id,           Serial
+  property :ziel,          String#, required: true
+  property :betrag,          Integer#, required: true
+  property :verwendungszweck,          String#, required: true
 
-  def to_csv
-    "#{@konto},#{@ziel_konto_nr},#{@betrag},#{@verwendungszweck}"
-  end
-
-  def betrag
-    @betrag
-  end
-
-  def konto
-    @konto
-  end
-
-  def ziel_konto_nr
-    @ziel_konto_nr
-  end
-
-  def verwendungszweck
-    @verwendungszweck
-  end
+  belongs_to :konto, "Konto"
 end

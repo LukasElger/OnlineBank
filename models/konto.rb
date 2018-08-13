@@ -1,74 +1,30 @@
 class Konto
+  include DataMapper::Resource
+  property :id,           Serial
+  property :konto_nr,    String, required: true
+  property :pin,          String, required: true
 
-  def initialize(konto_nr, pin, betrag)
-    @konto_nr = konto_nr
-    @pin = pin
-    @anfangs_saldo = betrag
-
-    @ueberweisungen = load_bookings
-  end
-
-  def konto_nr
-    @konto_nr
-  end
+  has n, :ueberweisungen, "Ueberweisung", constraint: :destroy
 
   def aendere_pin(neue_pin)
-    @pin = neue_pin
-  end
-
-  def pin
-    @pin
+    self.pin = neue_pin
+    self.save
   end
 
   def kontostand
-    ergebnis = 0
-    @ueberweisungen.each do |ueberweisung|
-      ergebnis += ueberweisung.betrag
-    end
-
-    ergebnis + @anfangs_saldo.to_i
+    ueberweisungen.sum(:betrag)
   end
 
-  def ueberweisungen
-    @ueberweisungen
-  end
-
-  def add_new_ueberweisung(quelle, ziel, betrag, grund)
-    @ueberweisungen << Ueberweisung.new(quelle, ziel, betrag.to_i, grund)
-  end
-
-  def ausgehenede_ueberweisung(ziel, betrag, grund)
-    add_new_ueberweisung(@konto_nr, ziel, betrag, grund)
-  end
-
-  def ueberweisung_to_csv
-    file = File.open("/home/le/workspace/OnlineBank/Konten/#{@konto_nr}.csv", "w+")
-    file.write(booking_csv)
-    file.close
+  def add_new_ueberweisung(ziel, betrag, grund)
+    Ueberweisung.create(konto: self, ziel: ziel, betrag: betrag.to_i, verwendungszweck: grund)
+    self.save
   end
 
   def authenticated?(password)
-    password == @pin
+    password == pin
   end
 
   def to_csv
-    "#{@konto_nr},#{@pin},#{@anfangs_saldo}"
-  end
-
-  def booking_csv
-    result = []
-    @ueberweisungen.each do |ueberweisung|
-      result << ueberweisung.to_csv
-    end
-    result.join("\n")
-  end
-
-  def load_bookings
-    temp = []
-    File.open("/home/le/workspace/OnlineBank/Konten/#{@konto_nr}.csv", "a+").each do |line|
-      quelle, ziel, betrag, grund = line.chomp.split(",")
-      temp << Ueberweisung.new(quelle, ziel, betrag.to_i, grund)
-    end
-    temp
+    "#{konto_nr},#{pin}"
   end
 end

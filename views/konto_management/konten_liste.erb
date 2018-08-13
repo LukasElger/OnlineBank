@@ -7,19 +7,19 @@
       <th>Pin ändern</th>
       <th>Löschen</th>
     </tr>
-    <% @konten.each do |iban, konto| %>
+    <% @konten.each do |konto| %>
       <tr>
         <td>
           <%= konto.konto_nr %>
         </td>
         <td>
-          <%= konto.kontostand %>
+          <%= konto.kontostand || 0 %>
         </td>
         <td>
-          <button><a href="/konten/<%= konto.konto_nr%>/edit" class="btn">Pin ändern</a></button>
+          <button><a href="/konten/<%= konto.id%>/edit" class="btn">Pin ändern</a></button>
         </td>
         <td>
-          <button><a href="/konten/<%= konto.konto_nr%>/delete" class="btn">Löschen</a></button>
+          <button><a href="/konten/<%= konto.id%>/delete" class="btn">Löschen</a></button>
         </td>
       </tr>
     <% end %>
