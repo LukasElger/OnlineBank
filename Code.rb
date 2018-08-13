@@ -4,6 +4,10 @@ require_relative "models/konto_manager"
 require_relative "models/konto"
 require_relative "models/ueberweisung"
 
+require 'data_mapper'
+
+DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/development.db")
+
 enable :sessions
 
 # index------------------------------------------
