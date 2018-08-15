@@ -6,6 +6,10 @@ class Konto
 
   has n, :ueberweisungen, "Ueberweisung", constraint: :destroy
 
+  def pin
+    self.pin
+  end
+
   def aendere_pin(neue_pin)
     self.pin = neue_pin
     self.save
